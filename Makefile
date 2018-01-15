@@ -6,7 +6,7 @@
 #    By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 16:01:05 by tbailly-          #+#    #+#              #
-#    Updated: 2018/01/12 15:26:26 by tbailly-         ###   ########.fr        #
+#    Updated: 2018/01/15 22:41:07 by tbailly-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,10 @@ LIB		=	-L libft/ -lft
 MLX		=	-lmlx -framework OpenGL -framework AppKit
 
 SRCS 	= 	fdf.c \
-			ft_get_map.c
+			ft_get_map.c \
+			ft_draw.c \
+			ft_apply_iso_matrix.c \
+			utilities.c
 
 OBJS 	= 	$(SRCS:.c=.o)
 

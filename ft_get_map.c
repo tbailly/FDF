@@ -6,7 +6,7 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 18:35:12 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/01/12 15:11:16 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/01/15 22:13:39 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,46 @@ static	int	**ft_add_row_height_map(int **height_map, int *map_row, int nb_row)
 	return (res);
 }
 
-int			**ft_get_height_map(char *filename)
+static	void	ft_debug_print_height_map(int **height_map, int *map_size)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	printf("-------- height_map --------\n");
+	while (i < map_size[1])
+	{
+		j = 0;
+		while (j < map_size[0])
+		{
+			printf("%i ", height_map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+	printf("\n\n");
+}
+
+int			**ft_get_height_map(char *filename, int **map_size_pt)
 {
 	int				fd;
 	char			*line;
 	char			**entries;
 	int				**height_map;
-	int				nb_row;
 
-	nb_row = 0;
+	*map_size_pt = (int*)malloc(sizeof(int*) * 2);
+	(*map_size_pt)[0] = 0;
+	(*map_size_pt)[1] = 0;
 	fd = open(filename, O_RDONLY);
 	while (get_next_line(fd, &line) > 0)
 	{
-		nb_row++;
+		(*map_size_pt)[1]++;
 		entries = ft_strsplit(line, ' ');
-		height_map = ft_add_row_height_map(height_map, ft_get_height_row(entries), nb_row);
+		height_map = ft_add_row_height_map(height_map, ft_get_height_row(entries), (*map_size_pt)[1]);
 	}
+	while (entries[(*map_size_pt)[0]] != NULL)
+		(*map_size_pt)[0]++;
+	ft_debug_print_height_map(height_map, *map_size_pt);
 	return (height_map);
 }

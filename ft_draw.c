@@ -6,7 +6,7 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 11:42:17 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/01/12 11:43:48 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/01/15 23:42:02 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static	t_point	get_direction(t_point p1, t_point p2)
 	
 	sub = p2.x - p1.x;
 	sub_abs = ft_abs(sub);
-	res.x = sub / sub_abs;
+	res.x = (sub == 0) ? 0 : (sub / sub_abs);
 	
 	sub = p2.y - p1.y;
 	sub_abs = ft_abs(sub);
-	res.y = sub / sub_abs;
+	res.y = (sub == 0) ? 0 : (sub / sub_abs);
 	return (res);
 }
 
@@ -75,4 +75,32 @@ void			draw_line(void *mlx, void *win, t_point p1, t_point p2)
 	}
 
 	printf("draw_line %p, %p, p1: %d;%d et p2: %d;%d\n", mlx, win, p1.x, p1.y, p2.x, p2.y);
+}
+
+void			ft_draw(void *mlx, void *win, t_point **map_to_display, int *map_size)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	printf("map_size[0] = %i et map_size[1] = %i \n", map_size[0], map_size[1]);
+	while (y < map_size[1])
+	{
+		x = 0;
+		while (x < map_size[0])
+		{
+			if (y != 0)
+			{
+				//printf("Y draw_line entre %d;%d et %d;%d\n", map_to_display[y][x].x, map_to_display[y][x].y, map_to_display[y - 1][x].x, map_to_display[y - 1][x].y);
+				draw_line(mlx, win, map_to_display[y][x], map_to_display[y - 1][x]);
+			}
+			if (x != 0)
+			{
+				//printf("X draw_line entre %d;%d et %d;%d\n", map_to_display[y][x].x, map_to_display[y][x].y, map_to_display[y][x - 1].x, map_to_display[y][x - 1].y);
+				draw_line(mlx, win, map_to_display[y][x], map_to_display[y][x - 1]);
+			}
+			x++;
+		}
+		y++;
+	}
 }
