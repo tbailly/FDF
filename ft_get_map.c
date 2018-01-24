@@ -6,7 +6,7 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 18:35:12 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/01/24 14:06:05 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/01/24 21:42:22 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int			**ft_get_height_map(char *filename, int **map_size_pt)
 	(*map_size_pt)[0] = 0;
 	(*map_size_pt)[1] = 0;
 	fd = open(filename, O_RDONLY);
-	printf("BP 2\n");
 	while (get_next_line(fd, line) == 1)
 	{
 		(*map_size_pt)[1]++;
@@ -96,7 +95,6 @@ int			**ft_get_height_map(char *filename, int **map_size_pt)
 	}
 	free(*line);
 	free(line);
-	printf("BP 5\n");
 	while (entries[(*map_size_pt)[0]] != NULL)
 		(*map_size_pt)[0]++;
 	//ft_debug_print_height_map(height_map, *map_size_pt);

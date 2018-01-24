@@ -6,7 +6,7 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 10:43:18 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/01/24 14:03:26 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/01/24 20:06:55 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <string.h>
 # include <fcntl.h>
 
-# define BUFF_SIZE 130
+# define BUFF_SIZE 1300
 
 typedef	struct		s_list
 {

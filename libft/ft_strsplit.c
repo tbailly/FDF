@@ -6,12 +6,11 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 14:49:15 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/01/24 11:57:24 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/01/24 20:00:40 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static	int		ft_split_count_words(char *s, char c)
 {
@@ -69,11 +68,9 @@ char			**ft_strsplit(char const *s, char c)
 	ret = NULL;
 	if (s == NULL)
 		return (NULL);
-	printf("BP 1 ");
 	words = ft_split_count_words((char*)s, c);
 	if (!(ret = (char**)malloc(sizeof(*ret) * (words + 1))))
 		return (NULL);
-	printf(" BP 2 ");
 	while (s[i] != '\0')
 	{
 		if ((i == 0 && s[i] != c && s[i] != '\0') ||
@@ -84,7 +81,6 @@ char			**ft_strsplit(char const *s, char c)
 		}
 		i++;
 	}
-	printf(" BP 3 ");
 	ret[j] = 0;
 	return (ret);
 }

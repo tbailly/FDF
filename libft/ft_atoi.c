@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbailly- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 19:39:35 by tbailly-          #+#    #+#             */
-/*   Updated: 2017/11/20 11:54:58 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/01/24 21:39:39 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int			ft_atoi(const char *str)
 
 	res = 0;
 	tmpres = -1;
+	isnegative = 0;
 	i = ft_determine_negative((char *)str, &isnegative);
 	while (str[i] >= '0' && str[i] <= '9')
 	{

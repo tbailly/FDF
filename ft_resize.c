@@ -6,7 +6,7 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 18:12:57 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/01/24 10:53:58 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/01/24 23:21:16 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ t_point	**ft_apply_resizing(t_point **map_to_display, int *map_size, int factor,
 		while (x < map_size[0])
 		{
 			// RESIZING
-			printf("BEFORE %f;%f\n", map_to_display[y][x].x, map_to_display[y][x].y);
+			//printf(" %f;%f;%f ; ", map_to_display[y][x].x, map_to_display[y][x].y, map_to_display[y][x].z);
 			map_to_display[y][x].x = map_to_display[y][x].x * factor + offset.x;
 			map_to_display[y][x].y = map_to_display[y][x].y * factor + offset.y;
-			printf("AFTER %f;%f\n", map_to_display[y][x].x, map_to_display[y][x].y);
 			x++;
 		}
 		x = 0;
@@ -48,7 +47,7 @@ t_point	**ft_resize(t_point **map_to_display, int *map_size)
 	float	maxy;
 	int		x;
 	int		y;
-	int		factor;
+	float	factor;
 	t_int_point	offset;
 
 	x = 0;
@@ -78,16 +77,17 @@ t_point	**ft_resize(t_point **map_to_display, int *map_size)
 
 	// Calculate the multiplicator factor
 	if ((WIN_WIDTH / (maxx - minx)) > (WIN_HEIGHT / (maxy - miny)))
-		factor = (int)(WIN_HEIGHT / (maxy - miny));
+		factor = round(WIN_HEIGHT / (maxy - miny));
 	else
-		factor = (int)(WIN_WIDTH / (maxx - minx));
+		factor = round(WIN_WIDTH / (maxx - minx));
 
 	// Calculate the offset
-	offset.x = ft_abs((int)minx * factor);
-	offset.y = ft_abs((int)miny * factor);
+	offset.x = (int)round(fabs(minx * factor) + WIN_WIDTH / 2 - (maxx * factor - minx * factor) / 2);
+	offset.y = (int)round(fabs(miny * factor) + WIN_HEIGHT / 2 - (maxy * factor - miny * factor) / 2);
 
+	
 	map_to_display = ft_apply_resizing(map_to_display, map_size, factor, offset);
 
-	printf("\nMINX = %f ; MAXX = %f ; MINY = %f ; MAXY = %f ; FACTOR = %i ; OFFSETX = %i ; OFFSETY = %i\n\n", minx, maxx, miny, maxy, factor, offset.x, offset.y);
+	//printf("\nMINX = %f ; MAXX = %f ; MINY = %f ; MAXY = %f ; FACTOR = %f ; OFFSETX = %i ; OFFSETY = %i\n\n", minx, maxx, miny, maxy, factor, offset.x, offset.y);
 	return (map_to_display);
 }

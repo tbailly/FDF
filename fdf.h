@@ -6,7 +6,7 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 16:05:14 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/01/23 18:34:24 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/01/24 21:53:19 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct		s_int_point
 	int	y;
 }					t_int_point;
 
-# define WIN_WIDTH	2000
-# define WIN_HEIGHT	1200
+# define WIN_WIDTH	1920
+# define WIN_HEIGHT	1080
 
 int					**ft_get_height_map(char *filename, int **map_size_pt);
 int					ft_rotate_map(int keycode, void *param);
@@ -51,6 +51,5 @@ t_point				**ft_rotate_z(t_point **map_to_display, int *map_size, float angle);
 
 
 t_point				**ft_resize(t_point **map_to_display, int *map_size);
-
 
 #endif
