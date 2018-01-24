@@ -6,7 +6,7 @@
 #    By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 16:01:05 by tbailly-          #+#    #+#              #
-#    Updated: 2018/01/15 22:41:07 by tbailly-         ###   ########.fr        #
+#    Updated: 2018/01/23 18:13:52 by tbailly-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,15 @@ SRCS 	= 	fdf.c \
 			ft_get_map.c \
 			ft_draw.c \
 			ft_apply_iso_matrix.c \
+			ft_rotate.c \
+			ft_resize.c \
 			utilities.c
 
 OBJS 	= 	$(SRCS:.c=.o)
 
 all		: $(NAME)
 
-$(NAME) : lib $(OBJS)
+$(NAME) : $(OBJS)
 	gcc -o $(NAME) $(OBJS) -I ./ $(MLX) $(LIB)
 	#gcc $(FLAGS) -o $(NAME) $(OBJS) -I ./ $(MLX) $(LIB)
 
