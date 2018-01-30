@@ -6,11 +6,11 @@
 #    By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 16:01:05 by tbailly-          #+#    #+#              #
-#    Updated: 2018/01/23 18:13:52 by tbailly-         ###   ########.fr        #
+#    Updated: 2018/01/30 14:08:33 by tbailly-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 	=	mlx
+NAME 	=	fdf
 FLAGS	=	-Werror -Wall -Wextra
 LIB		=	-L libft/ -lft
 MLX		=	-lmlx -framework OpenGL -framework AppKit

@@ -6,7 +6,7 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 11:42:17 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/01/24 23:01:23 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/01/30 14:46:25 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,44 +99,6 @@ void			draw_line(void *mlx, void *win, t_int_point p1, t_int_point p2)
 	//printf("draw_line ----- p1: %i;%i ----- p2: %i;%i\n", (int)p1.x, (int)p1.y, (int)p2.x, (int)p2.y);
 }
 
-/*void			ft_draw(void *mlx, void *win, t_point **map_to_display, int *map_size)
-{
-	t_int_point p1;
-	t_int_point p2;
-
-	int	x;
-	int	y;
-
-	y = 0;
-	//printf("map_size[0] = %i et map_size[1] = %i \n", map_size[0], map_size[1]);
-	while (y < map_size[1])
-	{
-		x = 0;
-		while (x < map_size[0])
-		{
-			p1.x = (int)map_to_display[y][x].x;
-			p1.y = (int)map_to_display[y][x].y;
-			if (y != 0)
-			{
-				//printf("Y draw_line entre %d;%d et %d;%d\n", map_to_display[y][x].x, map_to_display[y][x].y, map_to_display[y - 1][x].x, map_to_display[y - 1][x].y);
-				p2.x = (int)map_to_display[y - 1][x].x;
-				p2.y = (int)map_to_display[y - 1][x].y;
-				draw_line(mlx, win, p1, p2);
-			}
-			if (x != 0)
-			{
-				//printf("X draw_line entre %d;%d et %d;%d\n", map_to_display[y][x].x, map_to_display[y][x].y, map_to_display[y][x - 1].x, map_to_display[y][x - 1].y);
-				p2.x = (int)map_to_display[y][x - 1].x;
-				p2.y = (int)map_to_display[y][x - 1].y;
-				draw_line(mlx, win, p1, p2);
-			}
-			x++;
-		}
-		y++;
-	}
-}
-*/
-
 void			ft_draw(void *mlx, void *win, t_point **map_to_display, int *map_size)
 {
 	t_int_point p1;
@@ -175,6 +137,23 @@ void			ft_draw(void *mlx, void *win, t_point **map_to_display, int *map_size)
 }
 
 
+
+
+
+void	ft_draw_pixel_in_img(char *img_str, int x, int y)
+{
+	int i;
+
+	i = 0;
+	while (i < 1280000)
+	{
+		img_str[i]		= 255;
+		img_str[i + 1]	= 255;
+		img_str[i + 2]	= 255;
+		img_str[i + 3]	= 0;
+		i += 4;
+	}
+}
 
 
 
