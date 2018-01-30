@@ -6,7 +6,7 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 11:42:17 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/01/30 16:18:20 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/01/30 19:28:33 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static	t_int_point	get_direction(t_int_point p1, t_int_point p2)
 	return (res);
 }
 
-static	int			*ft_convert_color(int color)
+static int	*ft_convert_color(unsigned int color)
 {
 	int	i;
 	int	*res;
@@ -64,20 +64,63 @@ static	int			*ft_convert_color(int color)
 	return (res);
 }
 
-static	void		ft_draw_pixel(char *img_str, int x, int y, int color)
+static	void		ft_draw_pixel(char *img_str, t_int_point p)
 {
 	int pixel_i;
 	int	*colors;
 
-	if (x < WIN_WIDTH && y < WIN_HEIGHT)
+	if (p.x < WIN_WIDTH && p.y < WIN_HEIGHT)
 	{
-		colors = ft_convert_color(color);
-		pixel_i = (y * WIN_WIDTH * 4) + (x * 4);
-		img_str[pixel_i]		= colors[0];
-		img_str[pixel_i + 1]	= colors[1];
-		img_str[pixel_i + 2]	= colors[2];
-		img_str[pixel_i + 3]	= colors[3];
+		colors = ft_convert_color(p.color);
+		pixel_i = (p.y * WIN_WIDTH * 4) + (p.x * 4);
+		img_str[pixel_i]		= colors[0]; //B
+		img_str[pixel_i + 1]	= colors[1]; //V
+		img_str[pixel_i + 2]	= colors[2]; //R
+		img_str[pixel_i + 3]	= colors[3]; //A ?
 	}
+}
+
+int	ft_calculate_color(t_int_point p1, t_int_point p2, t_int_point p3, int x_longer_than_y)
+{
+	float ratio;
+	int *colors_p1;
+	int *colors_p2;
+	int *res;
+
+	colors_p1 = ft_convert_color(p1.color);
+	colors_p2 = ft_convert_color(p2.color);
+	res = (int*)malloc(sizeof(int) * 4);
+	if (x_longer_than_y == 1)
+		ratio = fabs((float)(p3.x - p1.x) / (float)(p2.x - p1.x));
+	else
+		ratio = fabs((float)(p3.y - p1.y) / (float)(p2.y - p1.y));
+	if (ratio > 1)
+		ratio = 1 / ratio;
+	ratio *= 100;
+
+	if (colors_p1[0] > colors_p2[0])
+		res[0] = colors_p1[0] - (ft_subs_max(colors_p2[0], colors_p1[0]) * ratio / 100);
+	else
+		res[0] = ft_subs_max(colors_p2[0], colors_p1[0]) * ratio / 100 + colors_p1[0];
+	if (colors_p1[1] > colors_p2[1])
+		res[1] = colors_p1[1] - (ft_subs_max(colors_p2[1], colors_p1[1]) * ratio / 100);
+	else
+		res[1] = ft_subs_max(colors_p2[1], colors_p1[1]) * ratio / 100 + colors_p1[1];
+	if (colors_p1[2] > colors_p2[2])
+		res[2] = colors_p1[2] - (ft_subs_max(colors_p2[2], colors_p1[2]) * ratio / 100);
+	else
+		res[2] = ft_subs_max(colors_p2[2], colors_p1[2]) * ratio / 100 + colors_p1[2];
+	if (colors_p1[3] > colors_p2[3])
+		res[3] = colors_p1[3] - (ft_subs_max(colors_p2[3], colors_p1[3]) * ratio / 100);
+	else
+		res[3] = ft_subs_max(colors_p2[3], colors_p1[3]) * ratio / 100 + colors_p1[3];
+
+	p3.color = 1 * res[0] + 256 * res[1] + 65536 * res[2] + 16777216 * res[3];
+
+	printf("p1 color : %u;%u;%u;%u et p2 color : %u;%u;%u;%u et p3 color : %u;%u;%u;%u \n", colors_p1[0], colors_p1[1],
+			colors_p1[2], colors_p1[3], colors_p2[0], colors_p2[1], colors_p2[2], colors_p2[3], res[0],
+			res[1], res[2], res[3]);
+	return (p3.color);
 }
 
 static	void		ft_draw_line(char *img_str, t_int_point p1, t_int_point p2)
@@ -110,7 +153,9 @@ static	void		ft_draw_line(char *img_str, t_int_point p1, t_int_point p2)
 
 	while (ptemp.x != p2.x || ptemp.y != p2.y)
 	{
-		ft_draw_pixel(img_str, ptemp.x, ptemp.y, 0x00FF0000);
+		//ptemp.color = ft_calculate_color(p1, p2, ptemp, x_longer_than_y);
+		ptemp.color = 0xFFFFFF;
+		ft_draw_pixel(img_str, ptemp);
 		if (x_longer_than_y)
 		{
 			ptemp.x += 1 * direction.x;

@@ -6,7 +6,7 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 16:05:14 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/01/30 16:16:25 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/01/30 18:02:56 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ typedef struct		s_point
 
 typedef struct		s_int_point
 {
-	int	x;
-	int	y;
+	int				x;
+	int				y;
+	unsigned	int	color;
 }					t_int_point;
 
 # define WIN_WIDTH	1920
@@ -36,8 +37,6 @@ typedef struct		s_int_point
 int					**ft_get_height_map(char *filename, int **map_size_pt);
 int					ft_rotate_map(int keycode, void *param);
 
-void				ft_draw_pixel(char *img_str, int x, int y, int color);
-void				ft_draw_line(char *img_str, t_int_point p1, t_int_point p2);
 void				ft_draw(char *img_str, t_point **map_to_display, int *map_size);
 
 

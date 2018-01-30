@@ -6,7 +6,7 @@
 #    By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 14:55:46 by tbailly-          #+#    #+#              #
-#    Updated: 2018/01/11 18:46:53 by tbailly-         ###   ########.fr        #
+#    Updated: 2018/01/30 19:08:13 by tbailly-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,9 @@ SRCS = $(SRC_PATH)ft_memset.c \
 	   $(SRC_PATH)ft_putstrarr.c \
 	   $(SRC_PATH)ft_itoa_base.c \
 	   $(SRC_PATH)ft_abs.c \
+	   $(SRC_PATH)ft_subs_max.c \
+	   $(SRC_PATH)ft_min.c \
+	   $(SRC_PATH)ft_max.c \
 	   \
 	   $(SRC_PATH)ft_lstnew.c \
 	   $(SRC_PATH)ft_lstdelone.c \

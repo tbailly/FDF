@@ -6,7 +6,7 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 10:43:18 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/01/24 20:06:55 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/01/30 19:08:20 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,9 @@ void				ft_putstrarr(char **s);
 char				*ft_itoaa(int value);
 char				*ft_itoa_base(int value, int base);
 unsigned	int		ft_abs(int a);
+int					ft_subs_max(int a, int b);
+int					ft_min(int a, int b);
+int					ft_max(int a, int b);
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void(*del)(void *, size_t));
