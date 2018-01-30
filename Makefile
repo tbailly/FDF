@@ -6,7 +6,7 @@
 #    By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 16:01:05 by tbailly-          #+#    #+#              #
-#    Updated: 2018/01/30 14:08:33 by tbailly-         ###   ########.fr        #
+#    Updated: 2018/01/30 23:58:00 by tbailly-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,10 @@ SRCS 	= 	fdf.c \
 			ft_get_map.c \
 			ft_draw.c \
 			ft_apply_iso_matrix.c \
-			ft_rotate.c \
 			ft_resize.c \
+			ft_rotate.c \
+			ft_calculate_color.c \
+			ft_color_datas.c \
 			utilities.c
 
 OBJS 	= 	$(SRCS:.c=.o)
@@ -28,20 +30,18 @@ OBJS 	= 	$(SRCS:.c=.o)
 all		: $(NAME)
 
 $(NAME) : $(OBJS)
-	gcc -o $(NAME) $(OBJS) -I ./ $(MLX) $(LIB)
-	#gcc $(FLAGS) -o $(NAME) $(OBJS) -I ./ $(MLX) $(LIB)
+	make -C libft/
+	gcc $(FLAGS) -o $(NAME) $(OBJS) -I ./ $(MLX) $(LIB)
 
 %.o		: %.c
-	gcc -c $(SRCS)
-	#gcc -c $(FLAGS) $(SRCS)
-
-lib		:
-	make -C libft/ re
+	gcc -c $(FLAGS) $(SRCS)
 
 clean	:
+	make -C libft/ clean
 	rm -rf $(OBJS)
 
 fclean	: clean
+	make -C libft/ fclean
 	rm -f $(NAME)
 
 re		: fclean all

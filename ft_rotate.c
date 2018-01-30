@@ -6,7 +6,7 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:06:20 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/01/23 17:14:16 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/01/30 23:31:28 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ t_point	**ft_rotate_x(t_point **map_to_display, int *map_size, float angle)
 			tmpx = map_to_display[y][x].x;
 			tmpy = map_to_display[y][x].y;
 			tmpz = map_to_display[y][x].z;
-
-			// APPLY X ROTATION
 			map_to_display[y][x].y = cos(angle) * tmpy - sin(angle) * tmpz;
 			map_to_display[y][x].z = sin(angle) * tmpy + cos(angle) * tmpz;
 			x++;
@@ -62,8 +60,6 @@ t_point	**ft_rotate_y(t_point **map_to_display, int *map_size, float angle)
 			tmpx = map_to_display[y][x].x;
 			tmpy = map_to_display[y][x].y;
 			tmpz = map_to_display[y][x].z;
-
-			// APPLY Y ROTATION
 			map_to_display[y][x].z = cos(angle) * tmpz - sin(angle) * tmpx;
 			map_to_display[y][x].x = sin(angle) * tmpz + cos(angle) * tmpx;
 
@@ -94,8 +90,6 @@ t_point	**ft_rotate_z(t_point **map_to_display, int *map_size, float angle)
 			tmpx = map_to_display[y][x].x;
 			tmpy = map_to_display[y][x].y;
 			tmpz = map_to_display[y][x].z;
-
-			// APPLY Z ROTATION
 			map_to_display[y][x].x = cos(angle) * tmpx - sin(angle) * tmpy;
 			map_to_display[y][x].y = sin(angle) * tmpx + cos(angle) * tmpy;
 
