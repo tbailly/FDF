@@ -6,7 +6,7 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 16:10:26 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/01/30 14:48:04 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/01/30 16:07:26 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,20 @@ int	main(int argc, char **argv)
 
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, WIN_WIDTH, WIN_HEIGHT, "tbailly- fdf");
+	img = mlx_new_image(mlx, WIN_WIDTH, WIN_HEIGHT);
+	img_str = ft_get_image(img);
 
-	//img = mlx_new_image(mlx, WIN_WIDTH, WIN_HEIGHT);
-	//img_str = ft_get_image(img);
-	//mlx_put_image_to_window(mlx, win, img, 0, 0);
+
+
 	height_map = ft_get_height_map(argv[1], &map_size);
 	map_to_display = ft_create_point_array(height_map, map_size);
 	map_to_display = ft_apply_iso_matrix(map_to_display, map_size);
-	//ft_debug_print_point_array(map_to_display, map_size);
-	ft_draw(mlx, win, map_to_display, map_size);
-	
+	ft_draw(img_str, map_to_display, map_size);
 
 
+
+	mlx_put_image_to_window(mlx, win, img, 0, 0);
 	mlx_key_hook(win, keyboard_input, 0);
-
-
 	mlx_loop(mlx);
 
 

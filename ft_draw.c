@@ -6,14 +6,14 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 11:42:17 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/01/30 14:46:25 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/01/30 16:18:20 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "fdf.h"
 
-void	ft_debug_print_point_array(t_point **map_to_display, int *map_size)
+void				ft_debug_print_point_array(t_point **map_to_display, int *map_size)
 {
 	int	x;
 	int	y;
@@ -32,7 +32,6 @@ void	ft_debug_print_point_array(t_point **map_to_display, int *map_size)
 	}
 }
 
-
 static	t_int_point	get_direction(t_int_point p1, t_int_point p2)
 {
 	int sub;
@@ -49,7 +48,39 @@ static	t_int_point	get_direction(t_int_point p1, t_int_point p2)
 	return (res);
 }
 
-void			draw_line(void *mlx, void *win, t_int_point p1, t_int_point p2)
+static	int			*ft_convert_color(int color)
+{
+	int	i;
+	int	*res;
+
+	i = 0;
+	res = (int*)malloc(sizeof(int) * 4);
+	while (i < 4)
+	{
+		res[i] = color % 256;
+		color = color / 256;
+		i++;
+	}
+	return (res);
+}
+
+static	void		ft_draw_pixel(char *img_str, int x, int y, int color)
+{
+	int pixel_i;
+	int	*colors;
+
+	if (x < WIN_WIDTH && y < WIN_HEIGHT)
+	{
+		colors = ft_convert_color(color);
+		pixel_i = (y * WIN_WIDTH * 4) + (x * 4);
+		img_str[pixel_i]		= colors[0];
+		img_str[pixel_i + 1]	= colors[1];
+		img_str[pixel_i + 2]	= colors[2];
+		img_str[pixel_i + 3]	= colors[3];
+	}
+}
+
+static	void		ft_draw_line(char *img_str, t_int_point p1, t_int_point p2)
 {
 	int	a;
 	int	b;
@@ -58,7 +89,6 @@ void			draw_line(void *mlx, void *win, t_int_point p1, t_int_point p2)
 	t_int_point	direction;
 	t_int_point ptemp;
 
-	//printf("draw_line ----- p1: %i;%i ----- p2: %i;%i\n", p1.x, p1.y, p2.x, p2.y);
 	direction = get_direction(p1, p2);
 	if (ft_abs(p1.x - p2.x) > ft_abs(p1.y - p2.y))
 	{
@@ -80,8 +110,7 @@ void			draw_line(void *mlx, void *win, t_int_point p1, t_int_point p2)
 
 	while (ptemp.x != p2.x || ptemp.y != p2.y)
 	{
-		//printf("ptemp %i;%i et p2 %i;%i\n", (int)ptemp.x, (int)ptemp.y, (int)p2.x, (int)p2.y);
-		mlx_pixel_put(mlx, win, ptemp.x, ptemp.y, 0x00FFFFFF);
+		ft_draw_pixel(img_str, ptemp.x, ptemp.y, 0x00FF0000);
 		if (x_longer_than_y)
 		{
 			ptemp.x += 1 * direction.x;
@@ -96,14 +125,12 @@ void			draw_line(void *mlx, void *win, t_int_point p1, t_int_point p2)
 		}
 		p = (p >= 0) ? (p + b) :(p + a);
 	}
-	//printf("draw_line ----- p1: %i;%i ----- p2: %i;%i\n", (int)p1.x, (int)p1.y, (int)p2.x, (int)p2.y);
 }
 
-void			ft_draw(void *mlx, void *win, t_point **map_to_display, int *map_size)
+void				ft_draw(char *img_str, t_point **map_to_display, int *map_size)
 {
 	t_int_point p1;
 	t_int_point p2;
-
 	int	x;
 	int	y;
 
@@ -118,17 +145,17 @@ void			ft_draw(void *mlx, void *win, t_point **map_to_display, int *map_size)
 			p1.y = (int)round(map_to_display[y][x].y);
 			if (y != 0)
 			{
-				//printf("Y draw_line entre %d;%d et %d;%d\n", map_to_display[y][x].x, map_to_display[y][x].y, map_to_display[y - 1][x].x, map_to_display[y - 1][x].y);
+				//printf("Y ft_draw_line entre %d;%d et %d;%d\n", map_to_display[y][x].x, map_to_display[y][x].y, map_to_display[y - 1][x].x, map_to_display[y - 1][x].y);
 				p2.x = (int)round(map_to_display[y - 1][x].x);
 				p2.y = (int)round(map_to_display[y - 1][x].y);
-				draw_line(mlx, win, p1, p2);
+				ft_draw_line(img_str, p1, p2);
 			}
 			if (x != 0)
 			{
-				//printf("X draw_line entre %d;%d et %d;%d\n", map_to_display[y][x].x, map_to_display[y][x].y, map_to_display[y][x - 1].x, map_to_display[y][x - 1].y);
+				//printf("X ft_draw_line entre %d;%d et %d;%d\n", map_to_display[y][x].x, map_to_display[y][x].y, map_to_display[y][x - 1].x, map_to_display[y][x - 1].y);
 				p2.x = (int)round(map_to_display[y][x - 1].x);
 				p2.y = (int)round(map_to_display[y][x - 1].y);
-				draw_line(mlx, win, p1, p2);
+				ft_draw_line(img_str, p1, p2);
 			}
 			x++;
 		}
@@ -139,21 +166,6 @@ void			ft_draw(void *mlx, void *win, t_point **map_to_display, int *map_size)
 
 
 
-
-void	ft_draw_pixel_in_img(char *img_str, int x, int y)
-{
-	int i;
-
-	i = 0;
-	while (i < 1280000)
-	{
-		img_str[i]		= 255;
-		img_str[i + 1]	= 255;
-		img_str[i + 2]	= 255;
-		img_str[i + 3]	= 0;
-		i += 4;
-	}
-}
 
 
 
