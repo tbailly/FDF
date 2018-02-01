@@ -6,14 +6,10 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 21:26:39 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/01/30 23:49:35 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/02/01 10:47:56 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <errno.h>
-#include <stdlib.h>
-#include <unistd.h>
 #include "fdf.h"
 
 void	ft_free_strarr(char **strarr)

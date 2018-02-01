@@ -6,12 +6,10 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 16:10:26 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/01/30 23:50:14 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/02/01 13:37:19 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "fdf.h"
 
 char	*ft_get_image(void *img_ptr)
@@ -57,9 +55,8 @@ int	main(int argc, char **argv)
 
 	height_map = ft_get_height_map(argv[1], &map_size);
 	map_to_display = ft_create_point_array(height_map, map_size);
-	printf("MAP_TO_DISPLAY color 0 %i 1 %i et 2 %i \n", map_to_display[0][0].color, map_to_display[1][0].color, map_to_display[2][0].color);
 	map_to_display = ft_apply_iso_matrix(map_to_display, map_size);
-	ft_draw(img_str, map_to_display, map_size);
+	ft_draw_image(img_str, map_to_display, map_size);
 
 
 

@@ -6,12 +6,10 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:06:20 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/01/30 23:31:28 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/02/01 10:48:25 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <math.h>
 #include "fdf.h"
 
 t_point	**ft_rotate_x(t_point **map_to_display, int *map_size, float angle)

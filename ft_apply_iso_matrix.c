@@ -6,13 +6,10 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 22:15:45 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/01/30 23:33:33 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/02/01 12:02:54 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
 #include "fdf.h"
 
 t_point	**ft_create_point_array(int **height_map, int *map_size)

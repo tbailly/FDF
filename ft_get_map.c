@@ -6,14 +6,10 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 18:35:12 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/01/30 23:57:23 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/02/01 13:08:19 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include "libft/includes/get_next_line.h"
 #include "fdf.h"
 
 static	int	*ft_get_height_row(char **str_row)
@@ -71,6 +67,7 @@ int			**ft_get_height_map(char *filename, int **map_size_pt)
 		entries = ft_strsplit(*line, ' ');
 		ft_get_height_row(entries);
 		height_map = ft_add_row_height_map(height_map, ft_get_height_row(entries), (*map_size_pt)[1]);
+		free(*line);
 	}
 	close(fd);
 	free(*line);

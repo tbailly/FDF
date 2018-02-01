@@ -6,7 +6,7 @@
 #    By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 16:01:05 by tbailly-          #+#    #+#              #
-#    Updated: 2018/01/30 23:58:00 by tbailly-         ###   ########.fr        #
+#    Updated: 2018/02/01 13:27:41 by tbailly-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ MLX		=	-lmlx -framework OpenGL -framework AppKit
 
 SRCS 	= 	fdf.c \
 			ft_get_map.c \
-			ft_draw.c \
+			ft_draw_image.c \
+			ft_draw_line.c \
 			ft_apply_iso_matrix.c \
 			ft_resize.c \
 			ft_rotate.c \
