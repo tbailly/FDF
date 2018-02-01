@@ -6,7 +6,7 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 20:55:19 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/02/01 17:25:32 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/02/01 22:04:30 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,7 @@ int			ft_calculate_color(t_int_point p1, t_int_point p2, t_int_point p3, int x_g
 	res = ft_find_ratio_color(res, c_p1, c_p2, ratio);
 	p3.color = 1 * res[0] + 256 * res[1] + 65536 * res[2] + 16777216 * res[3];
 	free(res);
+	free(c_p1);
+	free(c_p2);
 	return (p3.color);
 }

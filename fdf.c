@@ -6,7 +6,7 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 16:10:26 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/02/01 17:22:44 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/02/01 22:36:04 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,17 @@ int		main(int ac, char **av)
 	ft_draw_image(&(mlx_c), map_to_display, map_size);
 	mlx_put_image_to_window(mlx_c.mlx, mlx_c.win, mlx_c.img, 0, 0);
 	mlx_key_hook(mlx_c.win, keyboard_input, 0);
+
+
+	ft_free_intarr(height_map, map_size[1]);
+	ft_free_ptrarr(map_to_display, map_size[1]);
+
+	free(map_size);
+	
+
 	mlx_loop(mlx_c.mlx);
-	ft_free_intarr(height_map);
-	ft_free_ptrarr(map_to_display);
+	//free(mlx_c.mlx);
+	//free(mlx_c.win);
+	//free(mlx_c.img);
 	return (0);
 }

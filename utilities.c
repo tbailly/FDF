@@ -6,37 +6,35 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 21:26:39 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/02/01 16:40:39 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/02/01 22:23:17 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_free_intarr(int **arr)
+void	ft_free_intarr(int **arr, int length)
 {
 	int	i;
 
 	i = 0;
-	while (arr[i] != NULL)
+	while (i < length)
 	{
 		free(arr[i]);
 		i++;
 	}
-	free(arr[i]);
 	free(arr);
 }
 
-void	ft_free_ptrarr(t_point **arr)
+void	ft_free_ptrarr(t_point **arr, int length)
 {
 	int	i;
 
 	i = 0;
-	while (arr[i] != NULL)
+	while (i < length)
 	{
 		free(arr[i]);
 		i++;
 	}
-	free(arr[i]);
 	free(arr);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 11:42:17 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/02/01 17:30:30 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/02/01 22:04:04 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static	void			ft_draw_pixel(char *img_str, t_int_point p)
 		img_str[pixel_i + 1] = colors[1];
 		img_str[pixel_i + 2] = colors[2];
 		img_str[pixel_i + 3] = colors[3];
+		free(colors);
 	}
 }
 

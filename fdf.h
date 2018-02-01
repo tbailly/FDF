@@ -6,7 +6,7 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 16:05:14 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/02/01 16:40:03 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/02/01 22:19:25 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ int					*ft_color_datas(void);
 int					*ft_convert_color(unsigned int color);
 int					ft_calculate_color(t_int_point p1, t_int_point p2, t_int_point p3, int x_longer_than_y);
 
-void				ft_free_intarr(int **arr);
+void				ft_free_intarr(int **arr, int length);
+void				ft_free_ptrarr(t_point **arr, int length);
 void				ft_free_strarr(char **strarr);
-void				ft_free_ptrarr(t_point **arr);
 void				ft_exit(char *s);
 void				ft_exit_message(char *s);
 
