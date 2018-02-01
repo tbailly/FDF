@@ -6,7 +6,7 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 22:15:45 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/02/01 12:02:54 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/02/01 16:04:39 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_point	**ft_create_point_array(int **height_map, int *map_size)
 		x = 0;
 		y++;
 	}
+	free(color_datas);
 	return (res);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:06:20 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/02/01 10:48:25 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/02/01 17:33:38 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ t_point	**ft_rotate_y(t_point **map_to_display, int *map_size, float angle)
 			tmpz = map_to_display[y][x].z;
 			map_to_display[y][x].z = cos(angle) * tmpz - sin(angle) * tmpx;
 			map_to_display[y][x].x = sin(angle) * tmpz + cos(angle) * tmpx;
-
-
 			x++;
 		}
 		x = 0;
@@ -90,7 +88,6 @@ t_point	**ft_rotate_z(t_point **map_to_display, int *map_size, float angle)
 			tmpz = map_to_display[y][x].z;
 			map_to_display[y][x].x = cos(angle) * tmpx - sin(angle) * tmpy;
 			map_to_display[y][x].y = sin(angle) * tmpx + cos(angle) * tmpy;
-
 			x++;
 		}
 		x = 0;

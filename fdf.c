@@ -6,64 +6,47 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 16:10:26 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/02/01 13:37:19 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/02/01 17:22:44 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char	*ft_get_image(void *img_ptr)
-{
-	int	bits_per_pixel;
-	int	size_line;
-	int	endian;
-	char	*img_str;
-
-	bits_per_pixel = 4;
-	size_line = WIN_WIDTH;
-	endian = 0;
-	img_str = mlx_get_data_addr(img_ptr, &bits_per_pixel, &size_line, &endian);
-	return (img_str);
-}
-
-int keyboard_input(int keycode, void *param)
+int		keyboard_input(int keycode, void *param)
 {
 	(void)param;
 	if (keycode == 53)
-		ft_exit("keyboard_input");
+		exit(0);
 	return (0);
 }
 
-int	main(int argc, char **argv)
+void	ft_error_handler(int ac)
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*img_str;
-	int		**height_map;
-	t_point **map_to_display;
-	int		*map_size;
+	if (ac != 2)
+	{
+		ft_putstr("Usage : ./fdf <filename> [ case_size z_size ]");
+		exit(0);
+	}
+}
 
-	if (argc != 2)
-		return (0);
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, WIN_WIDTH, WIN_HEIGHT, "tbailly- fdf");
-	img = mlx_new_image(mlx, WIN_WIDTH, WIN_HEIGHT);
-	img_str = ft_get_image(img);
+int		main(int ac, char **av)
+{
+	t_mlx_components	mlx_c;
+	int					**height_map;
+	t_point				**map_to_display;
+	int					*map_size;
 
-
-
-	height_map = ft_get_height_map(argv[1], &map_size);
+	ft_error_handler(ac);
+	height_map = ft_get_height_map(av[1], &map_size);
 	map_to_display = ft_create_point_array(height_map, map_size);
 	map_to_display = ft_apply_iso_matrix(map_to_display, map_size);
-	ft_draw_image(img_str, map_to_display, map_size);
-
-
-
-	mlx_put_image_to_window(mlx, win, img, 0, 0);
-	mlx_key_hook(win, keyboard_input, 0);
-	mlx_loop(mlx);
-
-
+	mlx_c.mlx = mlx_init();
+	mlx_c.win = mlx_new_window(mlx_c.mlx, WIN_WIDTH, WIN_HEIGHT, "fdf");
+	ft_draw_image(&(mlx_c), map_to_display, map_size);
+	mlx_put_image_to_window(mlx_c.mlx, mlx_c.win, mlx_c.img, 0, 0);
+	mlx_key_hook(mlx_c.win, keyboard_input, 0);
+	mlx_loop(mlx_c.mlx);
+	ft_free_intarr(height_map);
+	ft_free_ptrarr(map_to_display);
 	return (0);
 }
