@@ -6,7 +6,7 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 16:10:26 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/02/01 22:36:04 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/02/05 12:00:49 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,38 +24,35 @@ void	ft_error_handler(int ac)
 {
 	if (ac != 2)
 	{
-		ft_putstr("Usage : ./fdf <filename> [ case_size z_size ]");
+		ft_putstr("Usage : ./fdf <filename> [ case_size z_size ]\n");
 		exit(0);
 	}
 }
 
 int		main(int ac, char **av)
 {
-	t_mlx_components	mlx_c;
-	int					**height_map;
-	t_point				**map_to_display;
-	int					*map_size;
+	t_info	mlx_c;
+	int		**h_map;
+	t_point	**map_to_display;
+	int		*map_size;
 
+	if (!(map_size = (int*)malloc(sizeof(int*) * 2)))
+		ft_exit("main");
+	map_size[0] = 0;
+	map_size[1] = 0;
 	ft_error_handler(ac);
-	height_map = ft_get_height_map(av[1], &map_size);
-	map_to_display = ft_create_point_array(height_map, map_size);
+	h_map = ft_get_h_map(av[1], &map_size);
+	map_to_display = ft_create_point_array(h_map, map_size);
 	map_to_display = ft_apply_iso_matrix(map_to_display, map_size);
 	mlx_c.mlx = mlx_init();
 	mlx_c.win = mlx_new_window(mlx_c.mlx, WIN_WIDTH, WIN_HEIGHT, "fdf");
 	ft_draw_image(&(mlx_c), map_to_display, map_size);
 	mlx_put_image_to_window(mlx_c.mlx, mlx_c.win, mlx_c.img, 0, 0);
 	mlx_key_hook(mlx_c.win, keyboard_input, 0);
-
-
-	ft_free_intarr(height_map, map_size[1]);
+	ft_free_intarr(h_map, map_size[1]);
 	ft_free_ptrarr(map_to_display, map_size[1]);
-
 	free(map_size);
-	
-
+	mlx_destroy_image(mlx_c.mlx, mlx_c.img);
 	mlx_loop(mlx_c.mlx);
-	//free(mlx_c.mlx);
-	//free(mlx_c.win);
-	//free(mlx_c.img);
 	return (0);
 }

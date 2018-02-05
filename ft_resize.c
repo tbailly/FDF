@@ -6,25 +6,25 @@
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 18:12:57 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/02/01 17:47:42 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/02/05 11:04:00 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static	t_point		**ft_apply_r(t_point **map, int *map_size, float factor, t_point offset)
+static t_point	**ft_apply_r(t_point **map, int *map_sz, float fc, t_point off)
 {
 	int		x;
 	int		y;
 
 	x = 0;
 	y = 0;
-	while (y < map_size[1])
+	while (y < map_sz[1])
 	{
-		while (x < map_size[0])
+		while (x < map_sz[0])
 		{
-			map[y][x].x = map[y][x].x * factor + offset.x;
-			map[y][x].y = map[y][x].y * factor + offset.y;
+			map[y][x].x = map[y][x].x * fc + off.x;
+			map[y][x].y = map[y][x].y * fc + off.y;
 			x++;
 		}
 		x = 0;
@@ -33,7 +33,7 @@ static	t_point		**ft_apply_r(t_point **map, int *map_size, float factor, t_point
 	return (map);
 }
 
-static	t_bounds	ft_find_bounds(t_bounds bounds, t_point **map, int *map_size)
+static t_bounds	ft_find_bounds(t_bounds bounds, t_point **map, int *map_size)
 {
 	int		x;
 	int		y;
@@ -60,7 +60,7 @@ static	t_bounds	ft_find_bounds(t_bounds bounds, t_point **map, int *map_size)
 	return (bounds);
 }
 
-t_point				**ft_resize(t_point **map_to_display, int *map_size)
+t_point			**ft_resize(t_point **map_to_display, int *map_size)
 {
 	t_bounds	bounds;
 	float		factor;

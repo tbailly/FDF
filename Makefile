@@ -6,7 +6,7 @@
 #    By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 16:01:05 by tbailly-          #+#    #+#              #
-#    Updated: 2018/02/01 22:35:41 by tbailly-         ###   ########.fr        #
+#    Updated: 2018/02/05 11:08:17 by tbailly-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,15 +16,17 @@ LIB		=	-L libft/ -lft
 MLX		=	-lmlx -framework OpenGL -framework AppKit
 
 SRCS 	= 	fdf.c \
-			ft_get_map.c \
-			ft_draw_image.c \
-			ft_draw_line.c \
+			ft_get_h_map.c \
+			ft_create_point_array.c \
 			ft_apply_iso_matrix.c \
 			ft_resize.c \
-			ft_rotate.c \
-			ft_calculate_color.c \
+			rotations.c \
+			ft_draw_image.c \
+			ft_draw_line.c \
+			ft_calc_color.c \
 			ft_color_datas.c \
-			utilities.c
+			utils.c \
+			free_utils.c
 
 OBJS 	= 	$(SRCS:.c=.o)
 

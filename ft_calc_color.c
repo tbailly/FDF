@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calculate_color.c                               :+:      :+:    :+:   */
+/*   ft_calc_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbailly- <tbailly-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 20:55:19 by tbailly-          #+#    #+#             */
-/*   Updated: 2018/02/01 22:04:30 by tbailly-         ###   ########.fr       */
+/*   Updated: 2018/02/05 09:57:50 by tbailly-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static	int	*ft_find_ratio_color(int *colors, int *c_p1, int *c_p2, float ratio)
 	return (colors);
 }
 
-int			ft_calculate_color(t_int_point p1, t_int_point p2, t_int_point p3, int x_greater_y)
+int			ft_calc_color(t_i_point p1, t_i_point p2, t_i_point p3, int x_sup_y)
 {
 	float	ratio;
 	int		*res;
@@ -44,7 +44,7 @@ int			ft_calculate_color(t_int_point p1, t_int_point p2, t_int_point p3, int x_g
 	c_p2 = ft_convert_color(p2.color);
 	if (!(res = (int*)malloc(sizeof(int) * 4)))
 		exit(0);
-	if (x_greater_y == 1)
+	if (x_sup_y == 1)
 		ratio = fabs((float)(p3.x - p1.x) / (float)(p2.x - p1.x));
 	else
 		ratio = fabs((float)(p3.y - p1.y) / (float)(p2.y - p1.y));
